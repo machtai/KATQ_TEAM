@@ -1,0 +1,27 @@
+﻿@model KATQ_TEAM.Models.DonHang
+@{
+    ViewBag.Title = "SuccessView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đơn hàng đã được thanh toán thành công!</h2>
+
+<p>Xin chúc mừng! Đơn hàng của bạn đã được xử lý thành công.</p>
+
+<!-- Hiển thị thông tin chi tiết đơn hàng -->
+<div>
+    <h3>Thông tin đơn hàng:</h3>
+    <p>Mã đơn hàng: @Model.Madon</p>
+    <p>Ngày đặt hàng: @Model.Ngaydat</p>
+    <p>Tổng tiền: @Model.Tongtien</p>
+    <p>Phương thức thanh toán: @Model.PhuongThuc</p>
+    <p>Địa chỉ: @Model.Diachinhanhang</p>
+    <!-- Thêm thông tin khác nếu cần -->
+</div>
+
+<!-- Hiển thị liên kết để quay lại trang chủ hoặc các trang khác -->
+<div>
+    <a href="@Url.Action("Index", "Home")">Quay lại trang chủ</a>
+    <!-- Thêm các liên kết khác nếu cần -->
+</div>
+<button class="btn btn-default bg-primary"></button>
