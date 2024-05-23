@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Điện thoại rẻ Thanh Hóa</title>
+    <title>@ViewBag.Title - KATQ_TEAM</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
-    <link rel=" stylesheet" href="~/Content/Style.css" />
+    <link rel="stylesheet" href="~/Content/Style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
@@ -16,8 +16,18 @@
     @using KATQ_TEAM.Models
 
     <style type="text/css">
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
             background-color: #F0F0F0;
+            font-family: 'Arial', sans-serif;
         }
 
         .navbar-inverse {
@@ -26,8 +36,8 @@
         }
 
         .top_header {
-            background-color: black;
-            padding-left: 110px;
+            background-color: #007BFF;
+            padding: 10px 20px;
             color: white;
         }
 
@@ -60,6 +70,8 @@
 
         .spnoibat {
             background-color: white;
+            padding: 20px;
+            border-radius: 5px;
         }
 
             .spnoibat h3 {
@@ -69,173 +81,107 @@
         .giohang {
             color: white;
         }
+
+        .card {
+            transition: transform 0.2s;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+            .card:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+        .card-title {
+            color: #007bff;
+        }
+
+        .card-text {
+            color: #dc3545;
+        }
+
+        .navbar-brand img {
+            margin-right: 10px;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+        }
     </style>
-
-
-
 </head>
-
 <body>
-
     @{ var u = Session["use"] as KATQ_TEAM.Models.Nguoidung; }
-
     <div class="navbar navbar-inverse navbar-fixed-top">
-
-        <div class="top_header col-md-12">
-
+        <div class="top_header col-md-12 py-4 h-100">
             <div class="row">
-                @*<div class="col-sm-2"><img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="20" height="20" style="padding:0" /></div>*@
-                <div class="col-sm-4 col-md-0" style="font-size:large">KATQ_TEAM</div>
+               
+                <div class="col-6">
+                    <div style="display:flex;align-items:end; justify-content:flex-end">
+                        <div style="color:white"><a style="color:white" type="button" href="@Url.Action("Index", "Home")" class="btn btn-light text-light">
+    <i class="fa fa-home"></i> KATQ_TEAM
+</a></div> 
+                        <div style="width:50px"></div>
 
-                <div class="col-sm-4 col-md-0" style="padding-left:250px">
-                    @Html.Action("GioHangPartial", "GioHang", new { @class = "giohang" })
+                        <div class=" text-right">
+                            @{
+                                if (u != null)
+                                {
+                                    <a style="color:white" href="@Url.Action("Profile", "User", new { id = u.MaNguoiDung })">Xin chào: @u.Email</a>
+                                    <a style="color:red" href="/User/DangXuat">ĐĂNG XUẤT</a>
+                                }
+                                else
+                                {
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-user" aria-hidden="true"></i> <!-- User icon with dropdown for login and registration -->
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <div class="p-3 m-2 btn btn-outline-success border border-dark" style="color: #007BFF"> <a class="dropdown-item" href="/User/Dangky">Đăng ký</a></div>
+
+                                            <div class="p-3 m-2 btn btn-outline-success border border-dark" style="color: #007BFF"><a class="dropdown-item" href="/User/Dangnhap">Đăng nhập</a></div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div style="width:50px"></div>
+                        <div class=" text-right">
+                            @Html.Action("GioHangPartial", "GioHang", new { @class = "giohang" }) <!-- Shopping cart icon -->
+                        </div>
+                        <div style="width:50px"></div>
+                    </div>
                 </div>
-                @*@Html.Action("GioHangPartial", "GioHang",new { @style = "color:while" })*@
-                @{ if (u != null)
-                    {
-                                <div class="col-sm-4 col-md-0">
-                                    <a style="color:white" href="@Url.Action("Profile", "User", new { id = u.MaNguoiDung  })"> Xin chào : @u.Email</a>
-                                    &nbsp;
-                                    @*@Html.ActionLink("ĐĂNG XUẤT", "DangXuat", "User", new { style = "color:red" })*@
-                                    <a style="color:red" href="/User/DangXuat"> ĐĂNG XUẤT</a>
-                                </div> }
-    else
-    {
-<div class="col-sm-4 col-md-0">
-    <a style="color:white" href="/User/Dangky"> Đăng ký</a>
-    &nbsp;
-    <a style="color:white" href="/User/Dangnhap"> Đăng nhập</a>
-</div> } }
-
-
             </div>
-
-        </div>
-        <div class="container">
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <img class="navbar-brand" src="~/HinhanhSP/logo1.jpg" width="50" height="50" style="padding:0" />
-                @Html.ActionLink("KATQ TEAM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <form class="form-inline" style="float:left">
-                    <input class="form-control mr-sm-2 w-100" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Search">
-                    <button class="btn btn-outline-success bg-light my-2 my-sm-0" type="submit">Search</button>
-                </form>
-
-            </div>
-
-            <div class="navbar-collapse collapse">
-
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#" title="dienthoai">
-                            @*<span><i class=" glyphicon-music "></i></span>*@
-                            <span>ĐIỆN THOẠI</span>
-
-                        </a>
-                        @*<span><i class=" glyphicon-music "></i> </span>
-                            <br />
-                            <span>@Html.ActionLink("Trang chủ", "Index", "Home") </span>*@
-                    </li>
-                    <li>
-                        <a href="#" title="LAPTOP">
-                            @*<span><i class="fas fa-tablet"></i></span>*@
-                            <span>LAPTOP</span>
-
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="#" title="PHUKIEN">
-                            @*<span><i class="fas fa-desktop"></i></span>*@
-                            <span>PHỤ KIỆN</span>
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Home/Contact" title="LIENHE">
-                            @*<span><i class="fas fa-headphones"></i></span>*@
-                            <span>LIÊN HỆ</span>
-
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color:white"
-                           class="nav-link"
-                           href="@Url.Action("Index", "DonHangs")">ĐƠN HÀNG</a>
-                    </li>
-                </ul>
-            </div>
-
         </div>
     </div>
 
 
-    <br>
-
-    <div class="container body-content">
+    <div class="container body-content content">
         @RenderBody()
         <hr />
-        <div>
-            <img class="img-responsive" src="~/HinhanhSP/ban2.jpg" />
-        </div>
+
         <br />
     </div>
-    <footer class="bg-info" style="padding-left:50px">
-        <div class="row">
-            <div class="col-md-3 col-sm-6">
-                <h2>Bảo hành</h2>
-                <span>Chính sách mua hàng</span>
-                <br />
-                <span>Chính sách bảo hành</span>
-                <br />
-                <span>Trung tâm bảo hành</span>
-                <br />
-                <span>Tra cứu bảo hành</span>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <h2>Liên kết</h2>
-                <span>Tin tức Mobile</span>
-                <br />
-                <span>Lập trình Web</span>
-                <br />
-                <span>GenkVN</span>
-                <br />
-                <span>Dân trí</span>
 
-
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <h2>Thông tin</h2>
-                <span>Về chúng tôi</span>
-                <br />
-                <span>Liên hệ</span>
-                <br />
-                <span>Góp ý</span>
-                <br />
-                <span>Tra cứu</span>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <h2>Theo dõi</h2>
-                <span>Kênh youtube</span>
-                <br />
-                <span>Fanpage</span>
-                <br />
-                <span>Shopee</span>
-                <br />
-                <span>Group</span>
-
-            </div>
+    <footer class="bg-body-tertiary text-center text-lg-start">
+        <div>
+            <img class="img-responsive" src="https://fptshop.com.vn/Uploads/Originals/2024/3/8/638455174621285140_Dien-thoai%20(2).png" />
         </div>
-        <hr />
-        <center> <p class="bg-primary">&copy; @DateTime.Now.Year - KATQ_TEAM</p></center>
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+            © @DateTime.Now.Year Copyright:
+            <a class="text-body" href="/">KATQ_TEAM</a>
+        </div>
     </footer>
-
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

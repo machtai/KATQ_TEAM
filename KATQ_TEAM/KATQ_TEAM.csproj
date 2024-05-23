@@ -1388,7 +1388,7 @@
     <Content Include="Views\Sanpham\dtsamsungpartial.cshtml" />
     <Content Include="Views\Danhmuc\DanhmucPartial.cshtml" />
     <Content Include="Views\Home\SlidePartial.cshtml" />
-    <Content Include="Views\Sanpham\dtxiaomipartial.cshtml" />
+    <Content Include="Views\Sanpham\dtKhacpartial.cshtml" />
     <Content Include="Views\Sanpham\xemchitiet.cshtml" />
     <Content Include="Views\User\Dangky.cshtml" />
     <Content Include="Views\User\Dangnhap.cshtml" />
@@ -1407,6 +1407,8 @@
     <Content Include="Views\GioHang\ThanhToanDonHang.cshtml" />
     <Content Include="Views\GioHang\SuccessView.cshtml" />
     <Content Include="Views\GioHang\FailureView.cshtml" />
+    <Content Include="Views\Sanpham\_ProductPartial.cshtml" />
+    <Content Include="Views\Sanpham\dtAllpartial.cshtml" />
     <None Include="Web.Debug.Config">
       <DependentUpon>Web.Config</DependentUpon>
     </None>

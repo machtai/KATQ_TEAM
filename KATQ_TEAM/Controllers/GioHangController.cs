@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using KATQ_TEAM.Models;
+using PayPal;
 using PayPal.Api;
 
 namespace KATQ_TEAM.Controllers
@@ -333,10 +334,17 @@ namespace KATQ_TEAM.Controllers
                     return View("SuccessView", ddh);
                 }
             }
+            catch (PayPalException ex) // Catch PayPal-specific exceptions
+            {
+                // Log the exception details (ex.Message, ex.Response)
+                return View("FailureView", new { errorMessage = "PayPal Error: " + ex.Message }); // Pass error to view
+            }
             catch (Exception ex)
             {
-                return View("FailureView");
+                // Log the exception details (ex.Message)
+                return View("FailureView", new { errorMessage = "An error occurred: " + ex.Message });
             }
+           
         }
 
 

@@ -41,31 +41,31 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
             return View(nguoidung);
         }
 
-        //// GET: Admin/Nguoidungs/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen");
-        //    return View();
-        //}
+        // GET: Admin/Nguoidungs/Create
+        public ActionResult Create()
+        {
+            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen");
+            return View();
+        }
 
-        //// POST: Admin/Nguoidungs/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "MaNguoiDung,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] Nguoidung nguoidung)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Nguoidungs.Add(nguoidung);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Admin/Nguoidungs/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "MaNguoiDung,Hoten,Email,Dienthoai,Matkhau,IDQuyen")] Nguoidung nguoidung)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Nguoidungs.Add(nguoidung);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-        //    ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
-        //    return View(nguoidung);
-        //}
+            ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
+            return View(nguoidung);
+        }
 
 
-            // Chỉnh sửa người dùng
+        // Chỉnh sửa người dùng
         // GET: Admin/Nguoidungs/Edit/5
         public ActionResult Edit(int? id)
         {

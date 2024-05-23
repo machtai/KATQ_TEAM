@@ -25,7 +25,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
                           Dienthoai = g.FirstOrDefault().Nguoidung.Dienthoai,
                           Soluong = g.Count()
                       });
-            var dataFinal = dataThongke.OrderByDescending(s => s.Tongtien).Take(5).ToList();
+            var dataFinal = dataThongke.OrderByDescending(s => s.Tongtien).ToList();
             return View(dataFinal);
         }
     }

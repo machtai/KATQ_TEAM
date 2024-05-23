@@ -6,9 +6,6 @@
         background-color: #f8f9fa;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
         transition: transform 0.2s; /* Hiệu ứng chuyển đổi khi hover */
-        height: 100%; /* Chiều cao 100% của cột */
-        display: flex;
-        flex-direction: column;
     }
 
         .card:hover {
@@ -23,10 +20,6 @@
 
     .card-body {
         padding: 20px; /* Khoảng cách nội dung bên trong card */
-        flex: 1; /* Chiếm không gian còn lại để nội dung card dàn đều */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Đảm bảo nội dung trong card phân bổ đều */
     }
 
     .card-title {
@@ -38,41 +31,30 @@
         color: #dc3545;
     }
 
+    /* Kiểu cho tiêu đề */
     .bg-danger h3 {
-        padding: 15px 20px;
+        padding: 15px 20px; /* Điều chỉnh padding */
         color: white;
     }
-
-    .row.d-flex {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-        .row.d-flex .col-lg-3,
-        .row.d-flex .col-md-4,
-        .row.d-flex .col-sm-6 {
-            display: flex;
-            flex-direction: column;
-        }
 </style>
 <div class="container">
     <div class="row mb-4">
         <div class="col-12 bg-danger text-center">
-            <p style="color:darkblue; font-size:30px; font-weight:700">Iphone</p>
+            <p style="color: darkblue; font-size: 30px; font-weight: 700">Khacs</p>
         </div>
     </div>
     <div class="row d-flex">
         @* Sử dụng flexbox *@
         @foreach (var item in Model)
         {
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card">
                     <a href="@Url.Action("xemchitiet", new { @Masp = item.Masp })">
                         <img src="@Url.Content("~" + item.Anhbia.ToString())" class="img-responsive" alt="@item.Tensp">
                     </a>
                     <div class="card-body text-center">
                         <h5 class="card-title">@item.Tensp</h5>
-                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) USD</p>
+                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) VND</p>
                         @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
                         {
                             <button type="submit" class="btn btn-primary">Mua hàng</button>
@@ -82,4 +64,5 @@
             </div>
         }
     </div>
+
 </div>

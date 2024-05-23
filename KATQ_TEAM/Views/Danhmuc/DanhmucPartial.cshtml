@@ -1,20 +1,37 @@
 ﻿@using KATQ_TEAM.Models;
 @model List<Hangsanxuat>
 
-
-<br />
-
 <div class="bg-success">
-
-    <h3> DANH MỤC  </h3>
-
+    <h3>DANH MỤC</h3>
     <div class="row">
-
         @foreach (var item in Model)
         {
             <div class="col-lg-1">
-                <button class="success"><a href="#"> @item.Tenhang</a></button>
+                <button class="btn btn-success filter-button" data-brand-id="@item.Mahang">
+                    @item.Tenhang
+                </button>
             </div>
         }
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $(".filter-button").click(function() {
+      var brandId = $(this).data("brand-id");
+
+      $.ajax({
+        url: '@Url.Action("FilterProductsByBrand", "Sanpham")',
+        data: { brandId: brandId },
+        success: function(result) {
+          // Ẩn tất cả các phần hiển thị sản phẩm hiện có
+            $(".dt").hide();
+          // hiện
+          $("#dt-brand-" + brandId).html(result).show();
+        }
+      });
+    });
+  });
+</script>
+

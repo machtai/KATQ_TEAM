@@ -1,61 +1,56 @@
 ﻿@{
-    ViewBag.Title = "ICT SHOP";
-    
+    ViewBag.Title = "KATQ_TEAM";
+
 }
 
 
 <br />
 <div class="row">
     <div class="col-md-8">
-       @Html.Action("SlidePartial","Home")
+        @Html.Action("SlidePartial", "Home")
     </div>
-    <div class="col-md-4">
-        <img src="~/HinhanhSP/qc3.gif" class="img-responsive" alt="" />
+    <div class="col-md-4" style="height:100px">
+
     </div>
 </div>
+<div class="">
+    <img class="img-responsive" src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/05/banner/Banner-Big-1920x450-2.png" />
+</div>
+<div style="height:20px"></div>
 <div>
-    <img class="img-responsive" src="~/HinhanhSP/ban1.jpg" />
+    <img class="img-responsive" src="https://images.fpt.shop/unsafe/fit-in/1168x97/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2024/5/2/638502733227139543_H7-%201200x100.png" />
 </div>
 <br />
 <div class="spnoibat">
     <div class="row">
 
         <h3> SẢN PHẨM NỔI BẬT</h3>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb1.png" class="img-responsive" alt="" />
+        <div class="col-md-3">
+            <img src="https://images.fpt.shop/unsafe/fit-in/262x324/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2024/5/2/638502733223077314_D%20(1).png" class="img-responsive" alt="" />
         </div>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb2.png" class="img-responsive" alt="" />
+        <div class="col-md-3">
+            <img src="https://images.fpt.shop/unsafe/fit-in/262x324/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2024/5/2/638502733230957777_D%20(2).png" class="img-responsive" alt="" />
         </div>
-        <div class="col-md-4">
-            <img src="~/HinhanhSP/spnb3.png" class="img-responsive" alt="" />
+        <div class="col-md-3">
+            <img src="https://images.fpt.shop/unsafe/fit-in/262x324/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2024/5/2/638502733225889593_D%20(3).png" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-3">
+            <img src="https://images.fpt.shop/unsafe/fit-in/262x324/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2024/5/2/638502733226827103_D%20(4).png" class="img-responsive" alt="" />
         </div>
     </div>
 </div>
 <div class="danhmuc">
     @Html.Action("DanhmucPartial", "Danhmuc")
 </div>
-<div class="dt">
-
-    @Html.Action("dtiphonePartial", "Sanpham")
+<div class="dt" id="dt-brand-2">
+    @Html.Action("dtiphonepartial", "Sanpham")
 </div>
-<div class="dt">
-
+<div class="dt" id="dt-brand-1">
     @Html.Action("dtsamsungpartial", "Sanpham")
 </div>
-
-<div class="dt">
-
-    @Html.Action("dtxiaomipartial", "Sanpham")
+<div class="dt" id="dt-brand-3">
+    @Html.Action("dtKhacpartial", "Sanpham")
 </div>
 
-<div class="row">
-    <h2> Tin tức sản phẩm</h2>
-    <div class="col-md-8">
-        Video
-    </div>
-    <div class="col-md-4">
-        Tin tức
-    </div>
-</div>
+
 

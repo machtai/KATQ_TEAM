@@ -11,43 +11,56 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Madon)
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Madon)
 
-        <div class="form-group">
-            <div class="control-label col-md-3 Bold"> <b>Ngày đặt</b></div>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Ngaydat, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.Ngaydat, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="control-label col-md-3 Bold">
+            <b>Ngày đặt</b>
         </div>
-
-        <div class="form-group">
-            <div class="control-label col-md-3 Bold"> <b>Tổng tiền thanh toán</b></div>
-            <div class="col-md-9">
-                <h3 class="text-danger">@String.Format("{0:0,0}", @ViewBag.tongtien) VNĐ</h3>
-            </div>
+        <div class="col-md-9">
+            @{
+                // Lấy ngày hiện tại
+                var currentDate = DateTime.Now;
+            }
+            @Html.TextBox("Ngaydat", currentDate.ToString("dd/MM/yyyy"), new { @class = "form-control", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Ngaydat, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="control-label col-md-3 Bold"> <b>Địa chỉ nhận hàng</b></div>
-            <div class="col-md-9">
-                @Html.EditorFor(model => model.Diachinhanhang, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Diachinhanhang, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <label class="control-label col-md-3 font-weight-bold">Tổng tiền thanh toán</label>
+        <div class="col-md-9">
+            <h3 class="text-success">@String.Format("{0:0,0}", @ViewBag.tongtien) USD</h3>
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div>
-                    <button type="submit" name="paymentMethod" value="PayPal" class="btn btn-success">paypal</button>
-                </div>
-                <div>
-                    <button type="submit" name="paymentMethod" value="COD" class="btn btn-success">cod</button>
-                </div>
+    <div class="form-group">
+        <div class="control-label col-md-3 Bold"> <b>Địa chỉ nhận hàng</b></div>
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Diachinhanhang, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Diachinhanhang, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="btn-group btn-group-space-between" role="group" aria-label="Payment Method">
+                <button type="submit" name="paymentMethod" value="PayPal" class="btn btn-success">PayPal</button>
+                <button type="submit" name="paymentMethod" value="COD" class="btn btn-success">COD</button>
             </div>
         </div>
     </div>
+
+
+</div>
 }
+<style>
+    .btn-group-space-between {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+</style>

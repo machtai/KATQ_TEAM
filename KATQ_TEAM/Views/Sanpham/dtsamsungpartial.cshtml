@@ -1,39 +1,59 @@
-﻿@using KATQ_TEAM.Models;
-@model List<Sanpham>
-<div class="row">
-    <div class=" bg-danger"><h3 style="padding-left:20px"> SAMSUNG </h3></div>
-    @foreach (var item in Model)
-    {
-<div class="col-md-3 col-sm-6">
-    <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">
-        <img src=@Url.Content("~" +item.Anhbia.ToString()) class="img-responsive" alt="" width="400" height="400" />
-    </a>
-                    <center>
-                        <h3> @item.Tensp</h3>
-                        <h3 style="color:red">Giá: @String.Format("{0:0,0}", @item.Giatien) VND</h3>
-                        <br />
-                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
-                        {
-        <input type="submit" value="Mua hàng" id="bgnGioHang" />}
-
-                        @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
-
-
-                    </center>
-
-                                </div>
+﻿
+<style>
+    .card {
+        padding: 40px;
+        transition: transform 0.2s;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
     }
 
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    @*<div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
+    .card-title {
+        color: #007bff;
+    }
+
+    .card-text {
+        color: #dc3545;
+    }
+
+    .bg-danger h3 {
+        padding-left: 20px;
+        color: white;
+    }
+</style>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12 bg-danger text-center">
+            <p style="color: darkblue; font-size: 30px; font-weight: 700">Samsung</p>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <img src="~/HinhanhSP/ip3.jpg" class="img-responsive" alt="" />
-        </div>*@
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="py-4 col-lg-3 col-md-4 col-sm-6 mb-4" style="max-height:500px; min-height:350px">
+                <div class="card h-100">
+                    <a href="@Url.Action("xemchitiet", new { @Masp = item.Masp })">
+                        <img src="@Url.Content("~" + item.Anhbia.ToString())" class="img-responsive" alt="@item.Tensp" style="height: 200px; object-fit: cover;">
+                    </a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Tensp</h5>
+                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) VND</p>
+                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
+                        {
+                            <button type="submit" class="btn btn-primary">Mua hàng</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
 
 

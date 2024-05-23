@@ -1,0 +1,22 @@
+﻿@model IEnumerable<KATQ_TEAM.Models.Sanpham>
+<div class="row d-flex">
+    @* Sử dụng flexbox *@
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
+            <div class="card">
+                <a href="@Url.Action("xemchitiet", new { @Masp = item.Masp })">
+                    <img src="@Url.Content("~" + item.Anhbia.ToString())" class="img-responsive" alt="@item.Tensp">
+                </a>
+                <div class="card-body text-center">
+                    <h5 class="card-title">@item.Tensp</h5>
+                    <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) USD</p>
+                    @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
+                    {
+                        <button type="submit" class="btn btn-primary">Mua hàng</button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
