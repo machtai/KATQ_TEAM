@@ -1,4 +1,36 @@
-﻿<style>
+﻿@model List<KATQ_TEAM.Models.Sanpham>
+
+@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2 class="my-4 text-center">KẾT QUẢ TÌM KIẾM</h2>
+    <div class="row d-flex">
+        @* Sử dụng flexbox *@
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
+                <div class="card">
+                    <a href="@Url.Action("xemchitiet", new { @Masp = item.Masp })">
+                        <img src="@Url.Content("~" + item.Anhbia.ToString())" class="img-responsive" alt="@item.Tensp">
+                    </a>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Tensp</h5>
+                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) USD</p>
+                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
+                        {
+                            <button type="submit" class="btn btn-primary">Mua hàng</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<style>
     /* Kiểu cho card */
     .card {
         border: 1px solid #ccc;
@@ -55,31 +87,3 @@
             flex-direction: column;
         }
 </style>
-<div class="container">
-    <div class="row my-4">
-        <div class="col-12 mt-5 text-center">
-            <p style="color:black; margin-top:20px; font-size:30px; font-weight:700">Iphone</p>
-        </div>
-    </div>
-    <div class="row d-flex">
-        @* Sử dụng flexbox *@
-        @foreach (var item in Model)
-        {
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex">
-                <div class="card">
-                    <a href="@Url.Action("xemchitiet", new { @Masp = item.Masp })">
-                        <img src="@Url.Content("~" + item.Anhbia.ToString())" class="img-responsive" alt="@item.Tensp">
-                    </a>
-                    <div class="card-body text-center">
-                        <h5 class="card-title">@item.Tensp</h5>
-                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) USD</p>
-                        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
-                        {
-                            <button type="submit" class="btn btn-primary">Mua hàng</button>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-</div>

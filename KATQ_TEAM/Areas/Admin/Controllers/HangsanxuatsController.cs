@@ -17,7 +17,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
         // GET: Admin/Hangsanxuats
         public ActionResult Index()
         {
-            return View(db.Hangsanxuats.ToList());
+            return View(db.Hangsanxuats.Where(d => d.delete_at == null).ToList());
         }
 
         // GET: Admin/Hangsanxuats/Details/5
@@ -89,29 +89,17 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
             return View(hangsanxuat);
         }
 
-        // GET: Admin/Hangsanxuats/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            if (hangsanxuat == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hangsanxuat);
-        }
-
         // POST: Admin/Hangsanxuats/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Hangsanxuat hangsanxuat = db.Hangsanxuats.Find(id);
-            db.Hangsanxuats.Remove(hangsanxuat);
-            db.SaveChanges();
+            if (hangsanxuat != null)
+            {
+                hangsanxuat.delete_at = DateTime.Now;
+                db.Entry(hangsanxuat).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

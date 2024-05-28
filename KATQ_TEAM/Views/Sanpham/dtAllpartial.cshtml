@@ -1,5 +1,61 @@
 ﻿@model IEnumerable<KATQ_TEAM.Models.Sanpham>
-<div class="row d-flex">
+<style>
+    /* Kiểu cho card */
+    .card {
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+        transition: transform 0.2s; /* Hiệu ứng chuyển đổi khi hover */
+        height: 100%; /* Chiều cao 100% của cột */
+        display: flex;
+        flex-direction: column;
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Hiệu ứng di chuyển lên khi hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng đậm hơn khi hover */
+        }
+
+    .card-img-top {
+        height: 200px; /* Giới hạn chiều cao ảnh */
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 20px; /* Khoảng cách nội dung bên trong card */
+        flex: 1; /* Chiếm không gian còn lại để nội dung card dàn đều */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Đảm bảo nội dung trong card phân bổ đều */
+    }
+
+    .card-title {
+        color: #007bff;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #dc3545;
+    }
+
+    .bg-danger h3 {
+        padding: 15px 20px;
+        color: white;
+    }
+
+    .row.d-flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .row.d-flex .col-lg-3,
+        .row.d-flex .col-md-4,
+        .row.d-flex .col-sm-6 {
+            display: flex;
+            flex-direction: column;
+        }
+</style><div class="row d-flex">
     @* Sử dụng flexbox *@
     @foreach (var item in Model)
     {

@@ -1,18 +1,19 @@
 ﻿@{
     ViewBag.Title = "KATQ_TEAM";
-
 }
 
 
-<br />
-<div class="row">
-    <div class="col-md-8">
-        @Html.Action("SlidePartial", "Home")
-    </div>
-    <div class="col-md-4" style="height:100px">
+<script>
+    function submitSearch(form) {
+        var keyword = form.elements['keyword'].value;
+        window.location.href = '@Url.Action("Search", "Sanpham")?keyword=' + encodeURIComponent(keyword);
+        return false; // Ngăn chặn submit mặc định của form
+    }
+</script>
 
-    </div>
-</div>
+
+<br />
+
 <div class="">
     <img class="img-responsive" src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/2024/05/banner/Banner-Big-1920x450-2.png" />
 </div>
@@ -39,6 +40,8 @@
         </div>
     </div>
 </div>
+<div id="searchContainer">
+</div>
 <div class="danhmuc">
     @Html.Action("DanhmucPartial", "Danhmuc")
 </div>
@@ -50,6 +53,9 @@
 </div>
 <div class="dt" id="dt-brand-3">
     @Html.Action("dtKhacpartial", "Sanpham")
+</div>
+<div>
+    @Html.Action("SlidePartial", "Home")
 </div>
 
 

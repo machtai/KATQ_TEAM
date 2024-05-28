@@ -5,66 +5,43 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>HỒ SƠ CÁ NHÂN</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">HỒ SƠ CÁ NHÂN</h2>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Ảnh đại diện
-        </dt>
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width: 200px;">Họ và tên:</th>
+                        <td>@Html.DisplayFor(model => model.Hoten)</td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <th>Điện thoại:</th>
+                        <td>@Html.DisplayFor(model => model.Dienthoai)</td>
+                    </tr>
+                    <tr>
+                        <th>Mật khẩu:</th>
+                        <td>@Html.DisplayFor(model => model.Matkhau)</td>
+                    </tr>
+                    <tr>
+                        <th>Địa chỉ:</th>
+                        <td>@Html.DisplayFor(model => model.Diachi)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <dd>
-            <img src=@Url.Content("~" + @Html.DisplayFor(model => model.Anhdaidien)) class="img-responsive" alt="" width="200" height="200" />
-
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Hoten)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Hoten)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dienthoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dienthoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Matkhau)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Matkhau)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Diachi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Diachi)
-        </dd>
-
-    </dl>
+    <div class="row mt-4">
+        <div class="col-md-8">
+            <button class="btn btn-success text-white">
+                @Html.ActionLink("Chỉnh sửa hồ sơ", "Edit", new { id = Model.MaNguoiDung }, new { @class = "text-white" })
+            </button>
+        </div>
+    </div>
 </div>
-<p>
-    <button class="btn btn-primary">
-        @Html.ActionLink("Chỉnh sửa hồ sơ", "Edit", new { id = Model.MaNguoiDung }, new { @style = "color:white;" })
-    </button>
-    @*@Html.ActionLink("Back to List", "Index")*@
-</p>

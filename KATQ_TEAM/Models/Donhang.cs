@@ -12,7 +12,7 @@
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonHang()
         {
-            ChitietDonHang = new HashSet<ChitietDonHang>();
+            ChitietDonHang = new HashSet<ChitietDonHang>();  
         }
 
         [Key]
@@ -41,7 +41,7 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChitietDonHang> ChitietDonHang { get; set; }
-
+        public DateTime? delete_at { get; set; }
         public virtual Nguoidung Nguoidung { get; set; }
     }
 }

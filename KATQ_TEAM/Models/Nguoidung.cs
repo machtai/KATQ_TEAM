@@ -51,5 +51,6 @@
         public virtual ICollection<DonHang> DonHang { get; set; }
 
         public virtual PhanQuyen PhanQuyen { get; set; }
+        public DateTime? delete_at { get; set; }
     }
 }

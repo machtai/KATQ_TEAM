@@ -8,9 +8,9 @@
 <h2>Quản lý người dùng</h2>
 
 <p>
-    <button class="btn-default"> @Html.ActionLink("Thêm mới", "Create") </button>
+    <button class="btn-success btn"> @Html.ActionLink("Thêm mới", "Create") </button>
 </p>
-<table class="table table-bordered">
+<table class="table table-bordered table-sm table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Hoten)
@@ -54,15 +54,14 @@
         @Html.DisplayFor(modelItem => item.PhanQuyen.TenQuyen)
     </td>
     <td>
-        @*<button class="btn btn-success">
+        <button class="btn btn-warning">
             @Html.ActionLink("Sửa", "Edit", new { id = item.MaNguoiDung }, new { @style = "color:white;" })
-        </button>*@
-        <button class="btn btn-primary">
-            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaNguoiDung }, new { @style = "color:white;" })
         </button>
-        <button class="btn btn-danger">
-            @Html.ActionLink("Xóa", "Delete", new { id = item.MaNguoiDung }, new { @style = "color:white;" })
-        </button>
+
+        @using (Html.BeginForm("DeleteConfirmed", "Nguoidungs", new { id = item.MaNguoiDung }, FormMethod.Post, new { onsubmit = "return confirm('Bạn có chắc chắn muốn xóa không?');" }))
+        {
+            <input type="submit" value="Xoá" class="btn btn-danger " />
+        }
     </td>
 </tr>
 }

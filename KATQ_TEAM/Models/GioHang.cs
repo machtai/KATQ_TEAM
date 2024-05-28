@@ -18,6 +18,7 @@ namespace KATQ_TEAM.Models
         public int iMasp { get; set; }
         public string sTensp { get; set; }
         public string sAnhBia { get; set; }
+        public DateTime? delete_at { get; set; }
         public double dDonGia { get; set; }
         public int iSoLuong { get; set; }
         public double ThanhTien

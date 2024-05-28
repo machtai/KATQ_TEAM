@@ -17,7 +17,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
         // GET: Admin/Hedieuhanhs
         public ActionResult Index()
         {
-            return View(db.Hedieuhanhs.ToList());
+            return View(db.Hedieuhanhs.Where(d => d.delete_at == null).ToList());
         }
 
         // GET: Admin/Hedieuhanhs/Details/5
@@ -89,29 +89,18 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
             return View(hedieuhanh);
         }
 
-        // GET: Admin/Hedieuhanhs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            if (hedieuhanh == null)
-            {
-                return HttpNotFound();
-            }
-            return View(hedieuhanh);
-        }
 
         // POST: Admin/Hedieuhanhs/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Hedieuhanh hedieuhanh = db.Hedieuhanhs.Find(id);
-            db.Hedieuhanhs.Remove(hedieuhanh);
-            db.SaveChanges();
+            if (hedieuhanh != null)
+            {
+                hedieuhanh.delete_at = DateTime.Now;
+                db.Entry(hedieuhanh).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

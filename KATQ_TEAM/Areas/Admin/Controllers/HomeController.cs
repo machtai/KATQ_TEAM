@@ -1,5 +1,6 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -35,7 +36,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
 
             // 5. Trả về các sản phẩm được phân trang theo kích thước và số trang.
-            return View(sp.ToPagedList(pageNumber, pageSize));
+            return View(sp.Where(d=>d.delete_at==null).ToPagedList(pageNumber, pageSize));
 
         }
 
@@ -59,7 +60,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Masp,Tensp,Giatien,Soluong,Mota,Thesim,Bonhotrong,Sanphammoi,Ram,Anhbia,Mahang,Mahdh")] Sanpham sanpham)
+        public ActionResult Create([Bind(Include = "Masp,Tensp,Giatien,Soluong,Mota,Anhbia,Mahang,Mahdh")] Sanpham sanpham)
         {
             if (ModelState.IsValid)
             {
@@ -100,9 +101,6 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
                 oldItem.Soluong = sanpham.Soluong;
                 oldItem.Mota = sanpham.Mota;
                 oldItem.Anhbia = sanpham.Anhbia;
-                oldItem.Bonhotrong = sanpham.Bonhotrong;
-                oldItem.Ram = sanpham.Ram;
-                oldItem.Thesim = sanpham.Thesim;
                 oldItem.Mahang = sanpham.Mahang;
                 oldItem.Mahdh = sanpham.Mahdh;
                 // lưu lại
@@ -133,9 +131,12 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
                 //Lấy được thông tin sản phẩm theo ID(mã sản phẩm)
                 var dt = db.Sanphams.Find(id);
                 // Xoá
-                db.Sanphams.Remove(dt);
-                // Lưu lại
-                db.SaveChanges();
+                if (dt != null)
+                {
+                    dt.delete_at = DateTime.Now;
+                    db.Entry(dt).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch

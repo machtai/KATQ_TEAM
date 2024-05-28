@@ -19,7 +19,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var nguoidungs = db.Nguoidungs.Include(n => n.PhanQuyen);
-            return View(nguoidungs.ToList());
+            return View(nguoidungs.Where(d => d.delete_at == null).ToList());
         }
 
         //Xem chi tiết người dùng theo Mã người dùng
@@ -93,7 +93,7 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
                 db.SaveChanges();
                 //@ViewBag.show = "Chỉnh sửa hồ sơ thành công";
                 //return View(nguoidung);
-                return RedirectToAction("Details", new { id = nguoidung.MaNguoiDung });
+                return RedirectToAction("Index");
             }
             ViewBag.IDQuyen = new SelectList(db.PhanQuyens, "IDQuyen", "TenQuyen", nguoidung.IDQuyen);
             return View(nguoidung);
@@ -121,8 +121,12 @@ namespace KATQ_TEAM.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Nguoidung nguoidung = db.Nguoidungs.Find(id);
-            db.Nguoidungs.Remove(nguoidung);
-            db.SaveChanges();
+            if (nguoidung != null)
+            {
+                nguoidung.delete_at = DateTime.Now;
+                db.Entry(nguoidung).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

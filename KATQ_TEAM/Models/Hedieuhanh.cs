@@ -25,5 +25,6 @@
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sanpham> Sanpham { get; set; }
+        public DateTime? delete_at { get; set; }
     }
 }

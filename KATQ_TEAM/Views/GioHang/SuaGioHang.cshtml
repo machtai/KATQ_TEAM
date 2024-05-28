@@ -30,14 +30,14 @@
 
                     <td> <img src="@Url.Content("~" +item.sAnhBia)" width="50" height="50" /></td>
 
-                    <td>  @String.Format("{0:0,0}", item.dDonGia) VNĐ</td>
+                    <td>  @String.Format("{0:0,0}", item.dDonGia) USD</td>
 
                     @*Chỉnh sửa giỏ hàng gọi về action CapNhatGioHang*@
                     @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @iMaSP = item.iMasp }))
                     {
                         <td>@Html.TextBox("txtSoLuong", item.iSoLuong) </td>
 
-                        <td>@String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
+                        <td>@String.Format("{0:0,0}", item.ThanhTien) USD</td>
                         <td>
                             <input type="submit" value="Cập nhật" class="btn-warning btn" />
                             <br />

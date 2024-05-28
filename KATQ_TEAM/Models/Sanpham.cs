@@ -32,17 +32,7 @@
 
         [Column(TypeName = "ntext")]
         public string Mota { get; set; }
-        [Display(Name = "Thẻ sim")]
-
-        public int? Thesim { get; set; }
-        [Display(Name = "Bộ nhớ trong")]
-
-        public int? Bonhotrong { get; set; }
-        [Display(Name = "Là sản phẩm mới")]
-
-        public bool? Sanphammoi { get; set; }
-
-        public int? Ram { get; set; }
+        
         [Display(Name = "Ảnh sản phẩm")]
 
         [StringLength(50)]
@@ -60,5 +50,6 @@
         public virtual Hangsanxuat Hangsanxuat { get; set; }
 
         public virtual Hedieuhanh Hedieuhanh { get; set; }
+        public DateTime? delete_at { get; set; }
     }
 }

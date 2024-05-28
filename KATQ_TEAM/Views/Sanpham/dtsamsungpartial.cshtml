@@ -28,9 +28,9 @@
 </style>
 
 <div class="container">
-    <div class="row mb-4">
-        <div class="col-12 bg-danger text-center">
-            <p style="color: darkblue; font-size: 30px; font-weight: 700">Samsung</p>
+    <div class="row my-4">
+        <div class="col-12 mt-5 text-center">
+            <p style="color:black; margin-top:20px; font-size:30px; font-weight:700">Samsung</p>
         </div>
     </div>
     <div class="row">
@@ -43,7 +43,7 @@
                     </a>
                     <div class="card-body text-center">
                         <h5 class="card-title">@item.Tensp</h5>
-                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) VND</p>
+                        <p class="card-text">Giá: @String.Format("{0:0,0}", @item.Giatien) USD</p>
                         @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMasp = item.Masp, @strURL = Request.Url.ToString() }))
                         {
                             <button type="submit" class="btn btn-primary">Mua hàng</button>

@@ -66,7 +66,7 @@ namespace KATQ_TEAM.Controllers
 
             if (islogin != null)
             {
-                if (userMail == "admin1@gmail.com")
+                if (islogin.IDQuyen == 2)
                 {
                     Session["use"] = islogin;
                     return RedirectToAction("Index", "Admin/Home");

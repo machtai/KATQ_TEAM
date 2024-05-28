@@ -34,5 +34,6 @@
         public virtual DonHang DonHang { get; set; }
 
         public virtual Sanpham Sanpham { get; set; }
+        public DateTime? delete_at { get; set; }
     }
 }

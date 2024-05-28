@@ -4,24 +4,38 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Đơn hàng đã được thanh toán thành công!</h2>
+<h2 class="animated fadeInDown">Đơn hàng đã được thanh toán thành công!</h2>
 
-<p>Xin chúc mừng! Đơn hàng của bạn đã được xử lý thành công.</p>
+<p class="animated fadeInUp text-success">Xin chúc mừng! Đơn hàng của bạn đã được xử lý thành công.</p>
 
 <!-- Hiển thị thông tin chi tiết đơn hàng -->
-<div>
-    <h3>Thông tin đơn hàng:</h3>
-    <p>Mã đơn hàng: @Model.Madon</p>
-    <p>Ngày đặt hàng: @Model.Ngaydat</p>
-    <p>Tổng tiền: @Model.Tongtien</p>
-    <p>Phương thức thanh toán: @Model.PhuongThuc</p>
-    <p>Địa chỉ: @Model.Diachinhanhang</p>
-    <!-- Thêm thông tin khác nếu cần -->
+<div class="table-responsive animated fadeInLeft">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th scope="row" style="width: 30%;">Mã đơn hàng:</th>
+                <td>@Model.Madon</td>
+            </tr>
+            <tr>
+                <th scope="row">Ngày đặt hàng:</th>
+                <td>@Model.Ngaydat</td>
+            </tr>
+            <tr>
+                <th scope="row">Tổng tiền:</th>
+                <td>@Model.Tongtien</td>
+            </tr>
+            <tr>
+                <th scope="row">Phương thức thanh toán:</th>
+                <td>@Model.PhuongThuc</td>
+            </tr>
+            <tr>
+                <th scope="row">Địa chỉ nhận hàng:</th>
+                <td>@Model.Diachinhanhang</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<!-- Hiển thị liên kết để quay lại trang chủ hoặc các trang khác -->
-<div>
-    <a href="@Url.Action("Index", "Home")">Quay lại trang chủ</a>
-    <!-- Thêm các liên kết khác nếu cần -->
+<div class="animated fadeInRight">
+    <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Quay lại trang chủ</a>
 </div>
-<button class="btn btn-default bg-primary"></button>
